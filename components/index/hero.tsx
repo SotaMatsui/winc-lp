@@ -13,30 +13,53 @@ export default function Hero() {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(SplitText);
   const scope = useRef(null);
-
+  const typoTexts = [
+    [ "アプリで、", "世界を変えよう。" ],
+    [ "アイデアで、", "世界を変えよう。" ],
+    [ "デザインで、", "世界を変えよう。" ],
+  ];
   useGSAP(
     () => {
-      gsap.to("#hero-main-typo-1", {
-        autoAlpha: 1,
-        text: "アプリで、",
-        delay: 0.5,
-        duration: 5 * 0.15,
+      const typoTL = gsap.timeline({
+        repeat: -1,
+        repeatDelay: 2,
       });
-      gsap.to("#hero-main-typo-2", {
-        autoAlpha: 1,
-        text: "世界を変えよう。",
-        delay: 0.5 + 5 * 0.15,
-        duration: 8 * 0.15,
+      typoTexts.forEach((texts, index) => {
+        typoTL
+          .from(
+            ["#hero-main-typo-1", "#hero-main-typo-2"],
+            {
+              text: "",
+              delay: index === 0 ? 0 : 2,
+              duration: 0.01,
+            }
+          )
+          .to(
+            "#hero-main-typo-1",
+            {
+              autoAlpha: 1,
+              text: texts[0],
+              duration: texts[0].length * 0.15,
+           }
+          )
+          .to(
+           "#hero-main-typo-2",
+            {
+              autoAlpha: 1,
+              text: texts[1],
+              duration: texts[1].length * 0.15,
+            }
+          );
       });
-      const tl = gsap.timeline();
-      tl.fromTo(
+      const cursorTL = gsap.timeline();
+      cursorTL.fromTo(
         "#hero-main-typo-cursor",
         1,
         {
-          "border-right-color": "rgba(255,255,255,1)",
+          "border-right-color": "var(--foreground)",
         },
         {
-          "border-right-color": "rgba(255,255,255,0)",
+          "border-right-color": "rgba(0,0,0,0)",
           repeat: -1,
           ease: "steps(1)",
         },
@@ -48,7 +71,7 @@ export default function Hero() {
 
   return (
     <section
-      className="flex flex-col w-full max-w-7xl justify-stretch lg:justify-center items-center lg:items-start lg:gap-12 min-h-[80vh]"
+      className="flex flex-col w-full max-w-7xl justify-stretch lg:justify-center items-center lg:items-start lg:gap-12 min-h-screen"
       ref={scope}
     >
       <div className="mt-24 lg:mt-8 mx-2 px-2 flex flex-col grow lg:grow-0">
@@ -57,11 +80,18 @@ export default function Hero() {
             id="hero-main-typo"
             className="w-fit flex flex-wrap justify-center"
           >
-            <span id="hero-main-typo-1" className="break-keep text-5xl lg:text-7xl font-light palt ">
-            </span>
-            <span id="hero-main-typo-2" className="break-keep text-5xl lg:text-7xl font-light palt ">
-            </span>
-            <div id="hero-main-typo-cursor" className="inline-block text-5xl lg:text-7xl border-r-8">
+            <span
+              id="hero-main-typo-1"
+              className="break-keep text-5xl lg:text-7xl font-light palt "
+            ></span>
+            <span
+              id="hero-main-typo-2"
+              className="break-keep text-5xl lg:text-7xl font-light palt "
+            ></span>
+            <div
+              id="hero-main-typo-cursor"
+              className="inline-block text-5xl lg:text-7xl border-r-8"
+            >
               <span className="opacity-0">I</span>
             </div>
           </div>
@@ -75,7 +105,7 @@ export default function Hero() {
         </div>
         <div className="flex flex-wrap gap-4 my-6 justify-start">
           <Link href="https://secure.register.winc.ne.jp/">
-            <div className="flex gap-1  hover:gap-3  p-4 rounded-2xl duration-300 button-slider from-purple-500 to-purple-500">
+            <div className="flex gap-1 p-4 rounded-2xl border border-foreground/10 hover:border-foreground/0 transition-colors duration-500 bg-gradient-to-r from-background to-background hover:from-blue-200 hover:to-rose-200">
               新入生向け情報
               <ArrowRight />
             </div>

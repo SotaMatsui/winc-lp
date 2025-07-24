@@ -68,7 +68,7 @@ export default function ActivityArticle({
   return (
     <article
       ref={scope}
-      className={`${className} bg-foreground/10 border border-white/10 grow`}
+      className={`${className} bg-foreground/10 border border-foreground/10 grow`}
     >
       <div className="bg-background rounded-2xl p-4 m-2">
         <Image

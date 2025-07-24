@@ -22,11 +22,14 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: 'black',
+  themeColor: 'white',
 }
 export const metadata: Metadata = {
-  title: "WINC: アプリチーム",
-  description: "早稲田コンピューター研究会（WINC）アプリチームの公式ホームページです。",
+  title: "WINC",
+  description: "早稲田コンピューター研究会（WINC）の公式ホームページです。",
+  appleWebApp: {
+    title: "WINC",
+  },
 };
 
 export default function RootLayout({
@@ -35,9 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overscroll-x-none overflow-x-hidden bg-background -z-10 relative">
+    <html
+      lang="en"
+      className="overscroll-x-none overflow-x-hidden bg-background -z-10 relative"
+    >
       <body
-        className={`${notoSansJp.variable} ${geistMono.variable} ${sans.variable} antialiased min-h-screen bg-gradient-to-br from-blue-700 to-rose-700 z-0 relative`}
+        className={`${notoSansJp.variable} ${geistMono.variable} ${sans.variable} antialiased min-h-screen bg-gradient-to-br from-blue-200 to-rose-200 z-0 relative`}
       >
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"

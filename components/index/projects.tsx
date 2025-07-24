@@ -16,7 +16,7 @@ export default async function Projects() {
   const projects = await getProjects();
   return (
     <div className="divide-effect flex flex-col justify-center">
-      <section className="border-t border-b border-white/10 w-full max-w-7xl py-32 flex flex-col gap-20">
+      <section className="border-t border-b border-foreground/10 w-full max-w-7xl py-32 flex flex-col gap-20">
         <SectionHeading titleEn="Our.Projects(type:featured)" titleJa="注目のプロジェクト" />
         <div className="divide-effect">
           <div className="flex flex-wrap max-w-7xl">

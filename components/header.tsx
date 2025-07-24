@@ -4,44 +4,55 @@ import Link from "next/link";
 
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useScrollStatus } from "@/hooks/scroll-status";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrollDirection, isScrollTop] = useScrollStatus();
   const onNavigate = () => setIsOpen(false);
+  console.log("scrollDirection", scrollDirection);
+  console.log("isScrollTop", isScrollTop);
 
   return (
     <>
-      <div id='mobile-menu-bg' className={`${isOpen ? 'opacity-100 z-5' : 'opacity-0 -z-1'} h-screen w-screen fixed top-0 bg-background`} />
-      <header className="flex justify-center w-full sticky top-0 border-b border-white/20 px-4 z-10 backdrop-blur-sm backdrop-saturate-[400%] bg-gradient-to-b from-black to-transparent">
-        <div className={`${isOpen ? 'block' : 'hidden'} fixed h-screen w-screen z-20 bg-black/50`}>
+      <div
+        id="mobile-menu-bg"
+        className={`${
+          isOpen ? "opacity-100 z-5" : "opacity-0 -z-1"
+        } h-screen w-screen fixed top-0 bg-background`}
+      />
+      <header
+        className={`flex justify-center w-full top-0 px-4 z-10 border-b transition-all duration-300 ${
+          isScrollTop
+            ? "border-transparent bg-transparent"
+            : "border-foreground/20 bg-background"
+        } ${scrollDirection === "up" ? "fixed" : "absolute"}`}
+      >
+        <div
+          className={`${
+            isOpen ? "block" : "hidden"
+          } fixed h-screen w-screen z-20 bg-background`}
+        >
           <div className="flex flex-col h-full justify-between pt-48 pb-24">
             <ul className="flex flex-col gap-4 text-xl font-medium px-8">
               <div className="font-mono">
                 <Link onNavigate={onNavigate} href="/members">
-                  <div>
-                    Members
-                  </div>
+                  <div>Members</div>
                 </Link>
               </div>
               <div className="font-mono">
                 <Link href="https://docs.google.com/forms/d/e/1FAIpQLSd77gukiHN_CpEvbhcMd7awd3VZqvx-f-I2g6kpYK2hUVhHxA/viewform">
-                  <div>
-                    Contact
-                  </div>
+                  <div>Contact</div>
                 </Link>
               </div>
               <div className="font-mono">
                 <Link onNavigate={onNavigate} href="/projects">
-                  <div>
-                    Projects
-                  </div>
+                  <div>Projects</div>
                 </Link>
               </div>
               <div className="font-mono">
                 <Link onNavigate={onNavigate} href="/news">
-                  <div>
-                    News
-                  </div>
+                  <div>News</div>
                 </Link>
               </div>
             </ul>
@@ -66,8 +77,12 @@ export default function Header() {
                 </Link>
               </div>
               <section className="flex flex-wrap gap-3">
-                <Link onNavigate={onNavigate} href="">プライバシーポリシー</Link>
-                <Link onNavigate={onNavigate} href="">利用規約</Link>
+                <Link onNavigate={onNavigate} href="">
+                  プライバシーポリシー
+                </Link>
+                <Link onNavigate={onNavigate} href="">
+                  利用規約
+                </Link>
               </section>
               <section className="w-full max-w-7xl text-end">
                 <p>© 2025 WINC</p>
@@ -75,48 +90,51 @@ export default function Header() {
             </footer>
           </div>
         </div>
-        <div className="flex w-full justify-between items-center gap-3 max-w-7xl top-0 py-4 z-30 relative">
+        <div className="flex w-full justify-between items-center gap-3 max-w-7xl top-0 z-30 relative">
           <Link href="/" className="flex items-center">
             <Image
-              src="/app-team-logo-white.svg"
-              width={256}
+              src="/WINC-designs/black-logo.svg"
+              width={380}
               height={24}
               alt="WINCアプリチーム"
-              className="filter-invert object-cover"
+              className="filter-invert object-cover hidden lg:block"
+            />
+            <Image
+              src="/WINC-designs/black icon.svg"
+              width={64}
+              height={24}
+              alt="WINCアプリチーム"
+              className="filter-invert object-cover lg:hidden"
             />
           </Link>
-          {isOpen ?
+          {isOpen ? (
             <X className="h-6 lg:hidden" onClick={() => setIsOpen(!isOpen)} />
-            : <Menu className="h-6 lg:hidden" onClick={() => setIsOpen(!isOpen)} />
-          }
+          ) : (
+            <Menu
+              className="h-6 lg:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+            />
+          )}
           <div className="hidden lg:block">
             <div className="flex gap-6 items-center uppercase font-medium">
               <div className="opacity-70 hover:opacity-100">
                 <Link href="/members">
-                  <div>
-                    Members
-                  </div>
+                  <div>Members</div>
                 </Link>
               </div>
               <div className="opacity-70 hover:opacity-100">
                 <Link href="https://docs.google.com/forms/d/e/1FAIpQLSd77gukiHN_CpEvbhcMd7awd3VZqvx-f-I2g6kpYK2hUVhHxA/viewform">
-                  <div>
-                    Contact
-                  </div>
+                  <div>Contact</div>
                 </Link>
               </div>
               <div className="opacity-70 hover:opacity-100">
                 <Link href="/projects">
-                  <div>
-                    Projects
-                  </div>
+                  <div>Projects</div>
                 </Link>
               </div>
               <div className="opacity-70 hover:opacity-100">
                 <Link href="/news">
-                  <div>
-                    News
-                  </div>
+                  <div>News</div>
                 </Link>
               </div>
               <div>
@@ -146,7 +164,7 @@ export default function Header() {
               </div>
               <div className="min-w-[166px]">
                 <Link href="https://secure.register.winc.ne.jp/">
-                  <div className="flex gap-0.5  hover:gap-1.5  p-3 rounded-xl duration-300 button-slider from-purple-500 to-purple-500">
+                  <div className="flex gap-1 p-4 rounded-2xl border border-foreground/10 hover:border-foreground/0 transition-colors duration-500 bg-gradient-to-r from-background to-background hover:from-blue-200 hover:to-rose-200">
                     新入生向け情報
                     <ArrowRight />
                   </div>

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ededed;
+  --background: #ffffff;
+  --foreground: #111111;
 }
 
 @theme inline {
@@ -33,30 +33,51 @@
 
   .text-4-5xl {
     font-size: calc((var(--text-4xl) + var(--text-5xl)) / 2)
-      /* 2.625rem = 42px */
-    ;
-    line-height: var(--tw-leading,
-        calc((var(--text-4xl--line-height) + var(--text-5xl--line-height)) / 2)
+      /* 2.625rem = 42px */;
+    line-height: var(
+      --tw-leading,
+      calc((var(--text-4xl--line-height) + var(--text-5xl--line-height)) / 2)
         /* 1 */
-      );
+    );
   }
 
   .button-slider {
-    background-image: linear-gradient(270deg,
-        #fff 0,
-        #fff 50%,
-        var(--tw-gradient-from) 0,
-        var(--tw-gradient-to));
+    background-image: linear-gradient(
+      270deg,
+      var(--foreground) 0,
+      var(--foreground) 50%,
+      var(--tw-gradient-from) 0,
+      var(--tw-gradient-to)
+    );
     background-position: 100% 0;
     background-size: 200% auto;
-    color: black;
+    color: var(--background);
     transition: all ease;
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
 
   .button-slider:hover {
+    background-position: 0 0;;
+    color: #000;
+  }
+
+    .button-slider-vertical {
+    background-image: linear-gradient(
+      180deg,
+      var(--foreground) 0,
+      var(--foreground) 50%,
+      var(--tw-gradient-from) 0,
+      var(--tw-gradient-to)
+    );
     background-position: 0 0;
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.57);
+    background-size: auto 200%;
+    color: var(--background);
+    transition: all ease;
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+
+  .button-slider-vertical:hover {
+    background-position: 0 100%;
     color: #000;
   }
 
@@ -69,7 +90,7 @@
     width: 100vw;
     height: 1px;
     transform: translateX(-50%);
-    background-color: #fff2;
+    background-color: #0002;
   }
 
   .divide-effect::after {
@@ -81,7 +102,7 @@
     width: 100vw;
     height: 1px;
     transform: translateX(-50%);
-    background-color: #fff2;
+    background-color: #0002;
   }
 
   .gsap {
@@ -91,7 +112,7 @@
 
   .svg-animate path {
     fill: none;
-    stroke: #fff;
+    stroke: var(--foreground);
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
     animation: dash 5s linear alternate infinite;
@@ -99,7 +120,7 @@
 
   .svg-animate-alt path {
     fill: none;
-    stroke: #fff;
+    stroke: var(--foreground);
     stroke-dasharray: 400;
     animation: dash 2s ease-in-out alternate infinite;
   }
