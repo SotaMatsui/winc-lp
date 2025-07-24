@@ -15,8 +15,6 @@ async function getNews() {
 export default async function News() {
   const news = await getNews();
 
-  console.log(news[0].description);
-
   return (
     <>
       <div className="divide-effect flex flex-col justify-center">

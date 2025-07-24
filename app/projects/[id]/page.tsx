@@ -21,8 +21,6 @@ export default async function ProjectDetail({
   const id = (await params).id;
   const project = await getProject(id);
 
-  console.log(project);
-
   return (
     <>
       <main className="flex flex-col items-center">

@@ -10,8 +10,6 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollDirection, isScrollTop] = useScrollStatus();
   const onNavigate = () => setIsOpen(false);
-  console.log("scrollDirection", scrollDirection);
-  console.log("isScrollTop", isScrollTop);
 
   return (
     <>
