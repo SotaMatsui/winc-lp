@@ -141,7 +141,7 @@ export default function Header() {
                 <Link href="https://x.com/WINC_waseda">
                   <div>
                     <Image
-                      src="/external-assets/x-logo/logo-white.png"
+                      src="/external-assets/x-logo/logo-black.png"
                       width={24}
                       height={24}
                       alt="公式X - @WINC_waseda"
@@ -154,7 +154,7 @@ export default function Header() {
                 <Link href="https://www.instagram.com/waseda_winc/">
                   <div>
                     <Image
-                      src="/external-assets/IG_brand_asset_pack_2023/01 Static Glyph/02 White Glyph/Instagram_Glyph_White.svg"
+                      src="/external-assets/IG_brand_asset_pack_2023/01 Static Glyph/03 Black Glyph/Instagram_Glyph_Black.svg"
                       width={24}
                       height={24}
                       alt="公式Instagram - waseda_winc"
